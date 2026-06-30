@@ -1,0 +1,570 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Luthfi — Data Scientist & AI Engineer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- NAV -->
+    <nav>
+      <a href="#hero" class="nav-logo">MRL.</a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#certifications">Certs</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="theme-btn" aria-label="Toggle light/dark mode">☀</button>
+        <button class="hamburger" id="hamburger-btn" aria-label="Open menu"><span></span><span></span><span></span></button>
+      </div>
+    </nav>
+
+    <div class="mobile-nav" id="mobile-nav">
+      <a href="#about" onclick="closeMobileNav()">About</a>
+      <a href="#skills" onclick="closeMobileNav()">Skills</a>
+      <a href="#experience" onclick="closeMobileNav()">Experience</a>
+      <a href="#projects" onclick="closeMobileNav()">Projects</a>
+      <a href="#certifications" onclick="closeMobileNav()">Certs</a>
+      <a href="#contact" onclick="closeMobileNav()">Contact</a>
+    </div>
+
+    <!-- HERO -->
+    <section id="hero">
+      <p class="hero-eyebrow">Fresh Graduate · East Jakarta, Indonesia</p>
+      <h1 class="hero-name">
+        Muhammad<br />
+        <span class="outline">Ruhunul</span><br />
+        <span class="accent-word">Luthfi</span>
+      </h1>
+      <p class="hero-desc">
+        BNSP-Certified Data Scientist &amp; Deep Learning Engineer.<br />
+        Building high-accuracy models with <strong>LSTM</strong> &amp; <strong>ResNet50V2</strong>,<br />
+        deploying them into real-world applications.
+      </p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+        <a href="cv/Lutfi_CV.pdf" download class="btn btn-ghost">Download CV</a>
+      </div>
+
+      <!-- Animated text ring -->
+      <div class="hero-badge">
+        <div class="text-ring-wrap">
+          <svg class="text-ring-svg" viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <path id="textCircle" d="M 140,140 m -100,0 a 100,100 0 1,1 200,0 a 100,100 0 1,1 -200,0" />
+            </defs>
+            <!-- Outer decorative rings -->
+            <circle cx="140" cy="140" r="132" stroke="rgba(0,229,160,0.08)" stroke-width="1" fill="none" />
+            <circle cx="140" cy="140" r="116" stroke="rgba(0,229,160,0.06)" stroke-width="1" stroke-dasharray="2 10" fill="none" />
+            <!-- Spinning text -->
+            <text font-family="'Space Mono', monospace" font-size="11.5" fill="rgba(0,229,160,0.55)" letter-spacing="7.2">
+              <textPath href="#textCircle">Data Scientist · AI Engineer · QA Engineer · Researcher ·</textPath>
+            </text>
+          </svg>
+          <!-- Center dot -->
+          <div class="text-ring-center">
+            <div class="text-ring-dot"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <div id="stats">
+      <div class="stats-grid">
+        <div class="stat-item reveal">
+          <div class="stat-num"><span id="c-projects">0</span></div>
+          <div class="stat-label">Projects Completed</div>
+        </div>
+        <div class="stat-item reveal">
+          <div class="stat-num"><span id="c-years">0</span><span style="font-size: 2rem; color: var(--accent)">yr</span></div>
+          <div class="stat-label">Years of Experience</div>
+        </div>
+        <div class="stat-item reveal">
+          <div class="stat-num"><span id="c-certs">0</span></div>
+          <div class="stat-label">Certifications</div>
+        </div>
+        <div class="stat-item reveal">
+          <div class="stat-num"><span id="c-paper">0</span></div>
+          <div class="stat-label">Published Research</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <section>
+      <div id="about">
+        <div class="about-text reveal">
+          <p class="section-label">01 — About</p>
+          <h2 class="section-title">Building<br /><span class="dim">Intelligent</span><br />Systems</h2>
+          <p>
+            I am a <strong>Computer Science graduate from Gunadarma University</strong> (GPA 3.83/4.00) based in East Jakarta. My passion lies at the intersection of Deep Learning, data-driven insights, and real-world software engineering.
+          </p>
+          <p>
+            From predicting stock prices with LSTM to classifying white blood cells using ResNet50V2 at 98.72% accuracy — I focus on building models that solve real problems, then
+            <strong>deploying them into production-ready applications</strong>.
+          </p>
+          <p>
+            Also experienced as a <strong>Lab Assistant</strong> mentoring students in Python, Data Science, and NVIDIA DGX, and as a <strong>Metaverse Developer Intern</strong>
+            building Unity applications with C#.
+          </p>
+          <span class="cert-badge">✦ BNSP Certified Associate Data Scientist · 2025–2028</span>
+        </div>
+        <div class="reveal" style="padding-top: 100px">
+          <div class="edu-card">
+            <div style="font-size: 0.7rem; letter-spacing: 0.2em; color: var(--accent); margin-bottom: 20px; text-transform: uppercase">✦ Education</div>
+            <div style="font-family: var(--sans); font-weight: 800; font-size: 1.4rem; margin-bottom: 6px; color: var(--text)">Gunadarma University</div>
+            <div style="font-size: 0.75rem; color: var(--muted); margin-bottom: 24px">Bachelor of Computer Science · Sep 2021 – Sep 2025</div>
+            <div class="edu-metrics">
+              <div class="edu-metric">
+                <span class="edu-metric-val">3.83</span>
+                <span class="edu-metric-label">GPA</span>
+              </div>
+              <div class="edu-metric">
+                <span class="edu-metric-val purple">SINTA 3</span>
+                <span class="edu-metric-label">Publication Rank</span>
+              </div>
+            </div>
+            <div style="font-size: 0.75rem; color: var(--muted); line-height: 1.85; border-top: 1px solid var(--border); padding-top: 18px">
+              Published: <em style="color: var(--text)">"Stock Price Prediction of PT Astra International Tbk Using LSTM"</em>
+              — Jurnal Ilmiah Ekonomi Bisnis, 2025.
+            </div>
+            <div style="margin-top: 14px">
+              <a
+                href="https://www.researchgate.net/publication/390933075_MODEL_DEEP_LEARNING_UNTUK_ANALISIS_PREDIKSI_HARGA_SAHAM_MENGGUNAKAN_METODE_LONG_SHORT-TERM_MEMORY_LSTM"
+                target="_blank"
+                class="project-link doi"
+                style="font-size: 0.68rem"
+              >
+                📄 DOI: 10.35760/eb.2025.v30i1.11870 ↗
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <p class="section-label reveal">02 — Skills</p>
+      <h2 class="section-title reveal">Technical<br /><span class="dim">Skills</span></h2>
+      <div class="skills-grid">
+        <div class="skill-card reveal">
+          <span class="skill-card-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="16 18 22 12 16 6" />
+              <polyline points="8 6 2 12 8 18" />
+            </svg>
+          </span>
+          <div class="skill-card-title">Programming</div>
+          <div class="skill-tags"><span class="tag">Python</span><span class="tag">SQL</span><span class="tag">C#</span><span class="tag">JavaScript</span><span class="tag">HTML / CSS</span><span class="tag">PHP</span></div>
+        </div>
+        <div class="skill-card reveal">
+          <span class="skill-card-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3" />
+              <path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12" />
+            </svg>
+          </span>
+          <div class="skill-card-title">AI & Deep Learning</div>
+          <div class="skill-tags">
+            <span class="tag">TensorFlow</span><span class="tag">Keras</span><span class="tag">CNN</span><span class="tag">LSTM</span><span class="tag">ResNet50V2</span><span class="tag">Scikit-learn</span
+            ><span class="tag">Transfer Learning</span>
+          </div>
+        </div>
+        <div class="skill-card reveal">
+          <span class="skill-card-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="20" x2="18" y2="10" />
+              <line x1="12" y1="20" x2="12" y2="4" />
+              <line x1="6" y1="20" x2="6" y2="14" />
+            </svg>
+          </span>
+          <div class="skill-card-title">Data Science</div>
+          <div class="skill-tags"><span class="tag">Pandas</span><span class="tag">NumPy</span><span class="tag">Matplotlib</span><span class="tag">Seaborn</span><span class="tag">Streamlit</span><span class="tag">NVIDIA DGX</span></div>
+        </div>
+        <div class="skill-card reveal">
+          <span class="skill-card-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <ellipse cx="12" cy="5" rx="9" ry="3" />
+              <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3" />
+              <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" />
+            </svg>
+          </span>
+          <div class="skill-card-title">Databases</div>
+          <div class="skill-tags"><span class="tag">SQL Server</span><span class="tag">MySQL</span></div>
+        </div>
+        <div class="skill-card reveal">
+          <span class="skill-card-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 11l3 3L22 4" />
+              <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" />
+            </svg>
+          </span>
+          <div class="skill-card-title">QA & Testing</div>
+          <div class="skill-tags">
+            <span class="tag">Postman</span><span class="tag">Cypress</span><span class="tag">Test Planning</span><span class="tag">Bug Reporting</span><span class="tag">API Testing</span><span class="tag">STLC</span>
+          </div>
+        </div>
+        <div class="skill-card reveal">
+          <span class="skill-card-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3" />
+              <path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14" />
+            </svg>
+          </span>
+          <div class="skill-card-title">Tools & Others</div>
+          <div class="skill-tags"><span class="tag">Git / GitHub</span><span class="tag">Unity</span><span class="tag">Figma</span><span class="tag">Tawk.to</span><span class="tag">MS Office</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <p class="section-label reveal">03 — Experience</p>
+      <h2 class="section-title reveal">Work<br /><span class="dim">History</span></h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot purple"></div>
+          <div class="timeline-period">FEB 2024 — JUL 2024</div>
+          <div class="timeline-role">Metaverse Developer (Blockchain) Intern</div>
+          <div class="timeline-org">Directorate General of Higher Education, Research, and Technology</div>
+          <ul class="timeline-list">
+            <li>Developed a responsive character controller in Unity (C#) for <em>Metaversitas</em>, optimizing avatar interaction.</li>
+            <li>Implemented a real-time chat system with C# and Rust, significantly improving message delivery speed.</li>
+          </ul>
+          <div style="margin-top: 14px; display: flex; flex-wrap: wrap; gap: 8px">
+            <a href="https://luthfi-portfolio.vercel.app/certificate/sertifikat+magang.pdf" target="_blank" class="timeline-proof">📋 Internship Certificate ↗</a>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-period">SEP 2024 — NOV 2024</div>
+          <div class="timeline-role">Lab Assistant — MK Praktikum Unggulan UG</div>
+          <div class="timeline-org">Gunadarma University</div>
+          <ul class="timeline-list">
+            <li>Led a team of lab assistants to manage practicum sessions across 5+ courses including Big Data and AI.</li>
+            <li>Mentored students in Python &amp; Data Science (NumPy, Pandas, Scikit-learn) and DGX system operations.</li>
+            <li>Provided real-time technical troubleshooting to maintain lab uptime.</li>
+          </ul>
+          <div style="margin-top: 14px; display: flex; flex-wrap: wrap; gap: 8px">
+            <a href="https://luthfi-portfolio.vercel.app/certificate/sertif2_merged.pdf" target="_blank" class="timeline-proof">📋 Lab Assistant Certificate 2024 ↗</a>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-period">SEP 2023 — JAN 2024</div>
+          <div class="timeline-role">Lab Assistant — MK Praktikum Unggulan UG</div>
+          <div class="timeline-org">Gunadarma University</div>
+          <ul class="timeline-list">
+            <li>Resolved student inquiries for AI, Big Data, and Robotics courses via Tawk.to.</li>
+            <li>Guided students in using the NVIDIA DGX system for GPU-accelerated computing.</li>
+          </ul>
+          <div style="margin-top: 14px; display: flex; flex-wrap: wrap; gap: 8px">
+            <a href="https://luthfi-portfolio.vercel.app/certificate/ilovepdf_merged%20(1).pdf" target="_blank" class="timeline-proof">📋 Lab Assistant Certificate 2023 ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <p class="section-label reveal">04 — Projects</p>
+      <h2 class="section-title reveal">Featured<br /><span class="dim">Work</span></h2>
+      <div class="projects-grid">
+        <div class="project-card reveal">
+          <div class="project-img-wrap">
+            <img src="img/img-wbc.png" alt="White Blood Cell Classification" />
+          </div>
+          <div class="project-num">PROJECT 001 · MAR–AUG 2025</div>
+          <div class="project-title">White Blood Cell Classification using ResNet50V2</div>
+          <div class="project-desc">
+            Developed a CNN-based white blood cell classification system using ResNet50V2 Transfer Learning as part of my undergraduate thesis. Built and deployed a Streamlit web application that performs real-time classification of
+            microscopic blood cell images with high accuracy.
+          </div>
+          <div class="skill-tags"><span class="tag">ResNet50V2</span><span class="tag">TensorFlow</span><span class="tag">Streamlit</span><span class="tag">Transfer Learning</span></div>
+          <div class="project-metric" style="margin-top: 14px">✦ 98.72% accuracy · 1,018 test images · 5 cell types</div>
+          <div class="project-links">
+            <a href="https://github.com/luth0910/wbc-classification-resnet50v2-link-here" target="_blank" class="project-link">⌥ GitHub ↗</a>
+            <a href="https://drive.google.com/file/d/1Cm1bW_-eI8F0QAoIrH8C0AED4fyKKavx/view" target="_blank" class="project-link">◈ Live Demo ↗</a>
+            <a
+              href="https://library.gunadarma.ac.id/repository/read/SG1mc3lSZGZyVkEwVWl5WHhZSUJHMmgwcVViTWhhbU9DbVFXQWJlSHFJYVNHOVNNd2RIUkRlU0J6RGhyZWp2cG9wSXlISkxkdzNETHV4Qit6bkE3VlFBMnJDT2NXUWdIVGhmSWNsTXBPWEptQjF3MThIWGx6QkRZRkhna01kbzhUZ3lkTnYvSG9neDd5bjB6dlpybUV4K2YxcUZDNWZGdVVQWVRDcTNINVppUENqTW1jb29Nd01lOWdRY3hqRHRjV2FDbG1PNERhSFRsTnVxU0RuakFTdzlRVnJ1cmtaWDVYYTBIQXptRWk2U3FJWFhqZHN4allvTmNGYThWbTRUKw=="
+              target="_blank"
+              class="project-link doi"
+              >📄 Thesis ↗</a
+            >
+          </div>
+        </div>
+
+        <div class="project-card reveal">
+          <div class="project-img-wrap">
+            <img src="img/img-lstm.png" alt="Stock Price Prediction LSTM" />
+          </div>
+          <div class="project-num">PROJECT 002 · MAR 2024–APR 2025</div>
+          <div class="project-title">Stock Price Prediction — PT Astra International Tbk (ASII.JK)</div>
+          <div class="project-desc">
+            Developed and evaluated an LSTM-based forecasting model for predicting ASII.JK stock prices using historical financial data. This research project was completed during undergraduate studies and published in a SINTA 3 accredited
+            journal in April 2025.
+          </div>
+          <div class="skill-tags"><span class="tag">LSTM</span><span class="tag">Keras</span><span class="tag">Time-Series</span><span class="tag">Python</span></div>
+          <div class="project-metric" style="margin-top: 14px">✦ 98.55% accuracy · 1.45% MAPE</div>
+          <div class="project-links">
+            <a href="https://github.com/luth0910/lstm-stock-prediction-astra-link-here" target="_blank" class="project-link">⌥ GitHub ↗</a>
+            <a href="https://www.researchgate.net/publication/390933075_MODEL_DEEP_LEARNING_UNTUK_ANALISIS_PREDIKSI_HARGA_SAHAM_MENGGUNAKAN_METODE_LONG_SHORT-TERM_MEMORY_LSTM" target="_blank" class="project-link doi">📄 DOI: Journal ↗</a>
+          </div>
+        </div>
+
+        <div class="project-card reveal">
+          <div class="project-img-wrap">
+            <img src="img/img-test-plan1.png" alt="Test Plan Document" />
+          </div>
+          <div class="project-num">PROJECT 003 · QA — SANBERCODE 2026</div>
+          <div class="project-title">Test Plan Document</div>
+          <div class="project-desc">
+            Developed a structured Test Plan Document as part of a Quality Assurance bootcamp project, defining testing objectives, scope, strategy, timelines, and acceptance criteria to ensure software quality and project readiness.
+          </div>
+          <div class="skill-tags"><span class="tag">STLC</span><span class="tag">Test Strategy</span><span class="tag">Risk Analysis</span><span class="tag">QA</span></div>
+          <div class="project-links">
+            <a href="https://docs.google.com/document/d/1v5_OTAsl1_Yc9ndZfQDbycfxlg3TvHdgtM6Abr9uMws/edit?usp=sharing" target="_blank" class="project-link doi">📄 View Document ↗</a>
+          </div>
+        </div>
+
+        <div class="project-card reveal">
+          <div class="project-img-wrap">
+            <img src="img/img-test-case.png" alt="Test Case Document" />
+          </div>
+          <div class="project-num">PROJECT 004 · QA — SANBERCODE 2026</div>
+          <div class="project-title">Test Case Document</div>
+          <div class="project-desc">
+            Created a structured Test Case Document for OrangeHRM, covering functional, validation, security, boundary, and edge case testing scenarios to verify system behavior, usability, and data integrity across key HR management
+            features.
+          </div>
+          <div class="skill-tags">
+            <span class="tag">Test Cases</span>
+            <span class="tag">Functional Testing</span>
+            <span class="tag">Negative Testing</span>
+            <span class="tag">Security Testing</span>
+            <span class="tag">OrangeHRM</span>
+          </div>
+          <div class="project-links">
+            <a href="https://docs.google.com/spreadsheets/d/1g5dGfF6BGnYq8iaIFtoEOVbtz2GNq2r8/edit?usp=sharing" target="_blank" class="project-link doi">📄 View Document ↗</a>
+          </div>
+        </div>
+
+        <div class="project-card reveal">
+          <div class="project-img-wrap">
+            <img src="img/img-bug-report.png" alt="Bug Report Document" />
+          </div>
+
+          <div class="project-num">PROJECT 005 · QA — SANBERCODE 2026</div>
+
+          <div class="project-title">Bug Report Document</div>
+
+          <div class="project-desc">
+            Developed a structured Bug Report Document during the Sanbercode Quality Assurance Bootcamp, documenting UI/UX and visual defects identified through testing activities. The report includes bug descriptions, reproduction steps,
+            expected and actual results, severity levels, environment details, and defect tracking information to support efficient issue resolution.
+          </div>
+
+          <div class="skill-tags">
+            <span class="tag">Bug Reporting</span>
+            <span class="tag">Defect Tracking</span>
+            <span class="tag">UI Testing</span>
+            <span class="tag">Sanbercode QA</span>
+          </div>
+
+          <div class="project-links">
+            <a href="https://docs.google.com/spreadsheets/d/1iZalhRXvkkuPyvg1VV7f_jUmTbhOAspL/edit?usp=sharing" target="_blank" class="project-link doi"> 📄 View Document ↗ </a>
+          </div>
+        </div>
+
+        <div class="project-card reveal">
+          <div class="project-img-wrap">
+            <img src="img/img-manual.png" alt="API Manual Test Postman" />
+          </div>
+
+          <div class="project-num">PROJECT 006 · QA — SANBERCODE 2026</div>
+
+          <div class="project-title">API Manual Testing using Postman</div>
+
+          <div class="project-desc">Performed manual API testing on the Platzi Fake Store Categories API using Postman, covering CRUD operations, endpoint validation, request/response verification, and HTTP status code testing.</div>
+
+          <div class="skill-tags">
+            <span class="tag">API Testing</span>
+            <span class="tag">Postman</span>
+            <span class="tag">Manual Testing</span>
+            <span class="tag">REST API</span>
+          </div>
+
+          <div class="project-links">
+            <a href="https://documenter.getpostman.com/view/21461383/2sBXwtp9Ky" target="_blank" class="project-link doi"> 📄 View Document ↗ </a>
+          </div>
+        </div>
+
+        <div class="project-card reveal">
+          <div class="project-img-wrap">
+            <img src="img/img-auto-api.png" alt="API Automation Test Postman" />
+          </div>
+          <div class="project-num">PROJECT 007 · QA — SANBERCODE 2026</div>
+          <div class="project-title">API Automation Test using Postman</div>
+          <div class="project-desc">Automated API test suite built in Postman with collection runner and assertions, enabling repeatable regression testing across API endpoints.</div>
+          <div class="skill-tags"><span class="tag">Automation</span><span class="tag">Postman</span><span class="tag">API Testing</span><span class="tag">QA</span></div>
+          <div class="project-links">
+            <a href="https://docs.google.com/spreadsheets/d/1iZalhRXvkkuPyvg1VV7f_jUmTbhOAspL/edit?usp=sharing" target="_blank" class="project-link doi">📄 View Document ↗</a>
+          </div>
+        </div>
+
+        <div class="project-card reveal">
+          <div class="project-img-wrap">
+            <img src="img/img-e2e-cy.png" alt="E2E Automation Test Cypress" />
+          </div>
+          <div class="project-num">PROJECT 008 · QA — SANBERCODE 2026</div>
+          <div class="project-title">E2E Automation Test using Cypress</div>
+          <div class="project-desc">Final Project of the SanberCode QA Automation Bootcamp. Developed an end-to-end automated testing suite for OrangeHRM using Cypress, covering the Login, Forgot Password, and Dashboard Directory modules. Automated positive and negative test scenarios, form validation, authentication workflows, employee directory search, UI verification, and navigation to ensure application quality and reliability.</div>
+          <div class="skill-tags"><span class="tag">Cypress</span><span class="tag">E2E Testing</span><span class="tag">JavaScript</span><span class="tag">QA</span></div>
+          <div class="project-links">
+<a href="https://github.com/luth0910/Final-Project_Automation-Testing" target="_blank" class="project-link">⌥ GitHub ↗</a>
+                      <a href="https://drive.google.com/file/d/1Q9Y_H9Mijh-Y1h3UY01DRwcTtsY47XUa/view?usp=drive_link" target="_blank" class="project-link">◈ Live Demo ↗</a>
+
+          </div>          
+        </div>
+  
+
+        <div class="project-card reveal upcoming-blank">
+          <div class="project-img-wrap placeholder-img">
+            <img src="img/img-coming.png" alt="coming-son" />
+          </div>
+          <div class="project-num">PROJECT 009 · UPCOMING</div>
+          <div class="project-title">Coming Soon</div>
+          <div class="project-desc">This project is currently in progress. Details will be added once it's completed.</div>
+          <div class="skill-tags"></div>
+          <div class="project-links">
+            <span class="project-link doi disabled">📄 Not Available Yet</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CERTIFICATIONS -->
+    <section id="certifications">
+      <p class="section-label reveal">05 — Certifications</p>
+      <h2 class="section-title reveal"><span class="dim">Credentials</span><br />&amp; Awards</h2>
+      <div class="cert-grid">
+        <div class="cert-card reveal">
+          <div class="cert-icon">🏅</div>
+          <div>
+            <div class="cert-name">Associate Data Scientist</div>
+            <div class="cert-org">BNSP — National Professional Certification Agency</div>
+            <div class="cert-period">SEP 2025 — SEP 2028 · National Standard (SKKNI)</div>
+            <a href="https://your-bnsp-certificate-link-here.com" target="_blank" class="cert-link">🔗 View Certificate ↗</a>
+          </div>
+        </div>
+        <div class="cert-card reveal">
+          <div class="cert-icon">🧪</div>
+          <div>
+            <div class="cert-name">Quality Assurance Bootcamp</div>
+            <div class="cert-org">Sanbercode — Batch 76</div>
+            <div class="cert-period">
+              APR 2026 — MAY 2026 · Software Development Life Cycle (SDLC) · Software Testing Life Cycle (STLC) ·Test Planning · Test Scenario & Test Case Design · Bug Reporting API Testing (Postman) · SQL Fundamentals · Automation Testing
+              (Cypress)
+            </div>
+            <a href="https://drive.google.com/file/d/1WEeCZRMCCYnuWCkOpf2dyfAljlqjsqQg/view?usp=sharing" target="_blank" class="cert-link">🔗 View Certificate ↗</a>
+          </div>
+        </div>
+        <div class="cert-card reveal">
+          <div class="cert-icon">📄</div>
+          <div>
+            <div class="cert-name">Published Researcher</div>
+            <div class="cert-org">Jurnal Ilmiah Ekonomi Bisnis — SINTA 3</div>
+            <div class="cert-period">APRIL 2025 · DOI: 10.35760/eb.2025.v30i1.11870</div>
+            <a href="https://www.researchgate.net/publication/390933075_MODEL_DEEP_LEARNING_UNTUK_ANALISIS_PREDIKSI_HARGA_SAHAM_MENGGUNAKAN_METODE_LONG_SHORT-TERM_MEMORY_LSTM" target="_blank" class="cert-link">🔗 View Publication ↗</a>
+          </div>
+        </div>
+        <div class="cert-card reveal" style="border-color: rgba(249, 115, 22, 0.2)">
+          <div class="cert-icon" style="background: rgba(249, 115, 22, 0.08); border-color: rgba(249, 115, 22, 0.25)">©</div>
+          <div>
+            <div class="cert-name">Copyright Certificate</div>
+            <div class="cert-org" style="color: var(--accent3)">Ministry of Law and Human Rights, Republic of Indonesia</div>
+            <div class="cert-period">25 JULY 2025 · 50-Year Protection</div>
+            <div style="font-size: 0.72rem; color: var(--muted); line-height: 1.7; margin: 8px 0 12px">
+              <em style="color: var(--text)">"White Blood Cell Classification Application Using CNN ResNet50V2"</em><br />
+              Type: Computer Program · Law No. 28 of 2014
+            </div>
+            <a href="https://luthfi-portfolio.vercel.app/certificate/SuratCiptaan_EC002025097698%20(1).pdf" target="_blank" class="cert-link orange-link">🔗 View Copyright Certificate ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="contact-inner">
+        <div class="reveal">
+          <p class="section-label">06 — Contact</p>
+          <h2 class="section-title">Let's<br /><span class="dim">Connect</span></h2>
+          <div class="contact-cta-block">
+            <p style="font-size: 0.85rem; color: var(--muted); line-height: 1.9; margin-bottom: 28px">Open to opportunities in Data Science, Machine Learning Engineering, QA, and research collaboration. Feel free to reach out!</p>
+            <a href="mailto:muhammad.r.luthfi@gmail.com" class="btn btn-primary">Send Email</a>
+          </div>
+        </div>
+        <div class="reveal">
+          <div class="contact-links">
+            <a href="mailto:muhammad.r.luthfi@gmail.com" class="contact-link">
+              <div class="contact-link-icon">✉</div>
+              <div>
+                <div style="font-size: 0.6rem; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 2px; text-transform: uppercase">Email</div>
+                <div>muhammad.r.luthfi@gmail.com</div>
+              </div>
+            </a>
+            <a href="tel:081286038123" class="contact-link">
+              <div class="contact-link-icon">☏</div>
+              <div>
+                <div style="font-size: 0.6rem; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 2px; text-transform: uppercase">Phone</div>
+                <div>081286038123</div>
+              </div>
+            </a>
+            <a href="https://github.com/luth0910" target="_blank" class="contact-link">
+              <div class="contact-link-icon">⌥</div>
+              <div>
+                <div style="font-size: 0.6rem; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 2px; text-transform: uppercase">GitHub</div>
+                <div>github.com/luth0910</div>
+              </div>
+            </a>
+            <a href="https://linkedin.com/in/muhammad-ruhunul-luthfi-739aa63a1" target="_blank" class="contact-link">
+              <div class="contact-link-icon">in</div>
+              <div>
+                <div style="font-size: 0.6rem; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 2px; text-transform: uppercase">LinkedIn</div>
+                <div>Muhammad Ruhunul Luthfi</div>
+              </div>
+            </a>
+            <!-- <a href="https://luthfi-portfolio.vercel.app" target="_blank" class="contact-link">
+              <div class="contact-link-icon">◈</div>
+              <div> -->
+                <!-- <div style="font-size: 0.6rem; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 2px; text-transform: uppercase">Portfolio</div>
+                <div>luthfi-portfolio.vercel.app</div> -->
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <span>© 2025 Muhammad Ruhunul Luthfi</span>
+      <span>East Jakarta, Indonesia</span>
+      <span style="color: var(--accent)">Built with ✦ precision</span>
+    </footer>
+
+    <script src="scripts.js"></script>
+  </body>
+</html>

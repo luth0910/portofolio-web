@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Luthfi — Data Scientist & AI Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* ── WARNA UTAMA (light/cream theme) ── */
+      --bg:        #f5f2ec;       /* background utama: krem hangat */
+      --surface:   #edeae2;       /* surface card section */
+      --border:    #d6d0c4;       /* border halus */
+      --accent:    #1a6b5a;       /* hijau teal gelap */
+      --accent2:   #7c3aed;       /* ungu */
+      --accent3:   #c2410c;       /* oranye burnt */
+      --text:      #1a1a1a;       /* teks utama */
+      --muted:     #6b6558;       /* teks muted coklat */
+      --card:      #faf8f4;       /* bg card */
+      --mono:      'Space Mono', monospace;
+      --sans:      'Syne', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--mono);
+      overflow-x: hidden;
+      /* cursor normal */
+      cursor: auto;
+    }
+
+    /* ── SUBTLE TEXTURE ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 0; opacity: 0.4;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; width: 100%;
+      padding: 20px 48px;
+      display: flex; justify-content: space-between; align-items: center;
+      z-index: 100;
+      background: rgba(245,242,236,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: var(--sans); font-weight: 800; font-size: 1.1rem;
+      color: var(--accent); letter-spacing: 0.05em; text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a {
+      font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 0 48px; position: relative; z-index: 1;
+      background: linear-gradient(135deg, #f5f2ec 60%, #e8f0ed 100%);
+    }
+    .hero-tag {
+      font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 24px;
+      opacity: 0; animation: fadeUp 0.6s 0.3s forwards;
+    }
+    .hero-name {
+      font-family: var(--sans);
+      font-size: clamp(3.2rem, 7.5vw, 7.5rem);
+      font-weight: 800; line-height: 0.92; letter-spacing: -0.02em;
+      margin-bottom: 32px; color: var(--text);
+      opacity: 0; animation: fadeUp 0.6s 0.5s forwards;
+    }
+    .hero-name .outline {
+      -webkit-text-stroke: 1.5px var(--accent);
+      color: transparent;
+    }
+    .hero-desc {
+      font-size: 0.88rem; line-height: 1.9; color: var(--muted);
+      max-width: 480px; margin-bottom: 48px;
+      opacity: 0; animation: fadeUp 0.6s 0.7s forwards;
+    }
+    .hero-desc strong { color: var(--text); }
+    .hero-cta {
+      display: flex; gap: 16px; flex-wrap: wrap;
+      opacity: 0; animation: fadeUp 0.6s 0.9s forwards;
+    }
+    .btn {
+      display: inline-block; padding: 13px 30px;
+      font-family: var(--mono); font-size: 0.75rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      text-decoration: none; border: 1.5px solid; transition: all 0.25s;
+    }
+    .btn-primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .btn-primary:hover { background: transparent; color: var(--accent); }
+    .btn-ghost { background: transparent; border-color: var(--border); color: var(--muted); }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+    .hero-deco {
+      position: absolute; right: 48px; top: 50%;
+      transform: translateY(-50%);
+      width: 320px; height: 320px;
+      border: 1.5px solid var(--border);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0.4;
+    }
+    .hero-deco::before {
+      content: '';
+      position: absolute; inset: 24px;
+      border: 1px dashed var(--accent);
+      border-radius: 50%;
+      animation: spin 20s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .hero-deco-text {
+      font-size: 0.6rem; letter-spacing: 0.2em; color: var(--muted);
+      text-transform: uppercase; text-align: center; line-height: 2;
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 100px 48px; position: relative; z-index: 1; }
+    .section-label {
+      font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 16px;
+    }
+    .section-title {
+      font-family: var(--sans); font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 800; line-height: 1.05; margin-bottom: 56px; color: var(--text);
+    }
+
+    /* ── STATS ── */
+    #stats {
+      padding: 48px; background: var(--accent);
+      position: relative; z-index: 1;
+    }
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; max-width: 480px; margin: 0 auto;
+    }
+    .stat-item { text-align: center; }
+    .stat-num {
+      font-family: var(--sans); font-size: 2.8rem; font-weight: 800;
+      color: #fff; line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(255,255,255,0.65); margin-top: 8px;
+    }
+
+    /* ── ABOUT ── */
+    #about { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .about-text p {
+      font-size: 0.88rem; line-height: 2; color: var(--muted); margin-bottom: 20px;
+    }
+    .about-text p strong { color: var(--text); }
+    .cert-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 16px; border: 1.5px solid var(--accent);
+      font-size: 0.72rem; letter-spacing: 0.08em; color: var(--accent);
+      margin-top: 12px; background: rgba(26,107,90,0.06);
+    }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px;
+    }
+    .skill-card {
+      background: var(--card); border: 1.5px solid var(--border); padding: 28px;
+      transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+    }
+    .skill-card:hover {
+      border-color: var(--accent); transform: translateY(-4px);
+      box-shadow: 0 8px 32px rgba(26,107,90,0.1);
+    }
+    .skill-card-title {
+      font-family: var(--sans); font-weight: 700; font-size: 0.82rem;
+      color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 16px;
+    }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag {
+      font-size: 0.68rem; letter-spacing: 0.06em; padding: 4px 10px;
+      border: 1px solid var(--border); color: var(--muted); transition: all 0.2s;
+      background: var(--bg);
+    }
+    .tag:hover { border-color: var(--accent2); color: var(--accent2); background: rgba(124,58,237,0.06); }
+
+    /* ── TIMELINE ── */
+    .timeline { position: relative; padding-left: 32px; }
+    .timeline::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+      width: 1.5px; background: linear-gradient(to bottom, var(--accent), var(--accent2), transparent);
+    }
+    .timeline-item {
+      position: relative; margin-bottom: 56px;
+      opacity: 0; transform: translateX(-20px); transition: opacity 0.5s, transform 0.5s;
+    }
+    .timeline-item.visible { opacity: 1; transform: translateX(0); }
+    .timeline-dot {
+      position: absolute; left: -38px; top: 6px;
+      width: 12px; height: 12px; border-radius: 50%; background: var(--accent);
+      box-shadow: 0 0 0 3px var(--bg), 0 0 0 5px var(--accent);
+    }
+    .timeline-period {
+      font-size: 0.68rem; letter-spacing: 0.15em; color: var(--accent); margin-bottom: 8px;
+    }
+    .timeline-role {
+      font-family: var(--sans); font-weight: 700; font-size: 1.05rem; margin-bottom: 4px;
+    }
+    .timeline-org { font-size: 0.78rem; color: var(--muted); margin-bottom: 16px; }
+    .timeline-list { list-style: none; }
+    .timeline-list li {
+      font-size: 0.82rem; line-height: 1.8; color: var(--muted);
+      padding-left: 16px; position: relative; margin-bottom: 6px;
+    }
+    .timeline-list li::before { content: '▸'; position: absolute; left: 0; color: var(--accent); }
+
+    /* Bukti link di timeline */
+    .timeline-proof {
+      display: inline-flex; align-items: center; gap: 6px;
+      margin-top: 14px; padding: 7px 14px;
+      border: 1px solid var(--border); font-size: 0.7rem;
+      color: var(--muted); text-decoration: none; letter-spacing: 0.08em;
+      transition: all 0.2s; background: var(--bg);
+    }
+    .timeline-proof:hover { border-color: var(--accent); color: var(--accent); }
+    .timeline-proof + .timeline-proof { margin-left: 8px; }
+
+    /* ── PROJECTS ── */
+    .projects-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 24px;
+    }
+    .project-card {
+      background: var(--card); border: 1.5px solid var(--border); padding: 32px;
+      position: relative; overflow: hidden; transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    }
+    .project-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      transform: scaleX(0); transform-origin: left; transition: transform 0.3s;
+    }
+    .project-card:hover::before { transform: scaleX(1); }
+    .project-card:hover {
+      border-color: var(--accent); transform: translateY(-6px);
+      box-shadow: 0 12px 40px rgba(26,107,90,0.1);
+    }
+    .project-num { font-size: 0.65rem; letter-spacing: 0.2em; color: var(--muted); margin-bottom: 14px; }
+    .project-title {
+      font-family: var(--sans); font-weight: 700; font-size: 1.05rem;
+      margin-bottom: 12px; line-height: 1.35; color: var(--text);
+    }
+    .project-desc { font-size: 0.8rem; line-height: 1.85; color: var(--muted); margin-bottom: 18px; }
+    .project-metric {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(26,107,90,0.08); border: 1px solid rgba(26,107,90,0.2);
+      padding: 6px 12px; font-size: 0.72rem; color: var(--accent); margin-bottom: 16px;
+    }
+    .project-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .project-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 7px 14px; font-size: 0.7rem; letter-spacing: 0.08em;
+      text-decoration: none; border: 1px solid var(--border);
+      color: var(--muted); transition: all 0.2s; background: var(--bg);
+    }
+    .project-link:hover { border-color: var(--accent); color: var(--accent); }
+    .project-link.doi { border-color: rgba(124,58,237,0.3); color: var(--accent2); }
+    .project-link.doi:hover { border-color: var(--accent2); background: rgba(124,58,237,0.06); }
+
+    /* ── CERTIFICATIONS ── */
+    .cert-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px;
+    }
+    .cert-card {
+      background: var(--card); border: 1.5px solid var(--border); padding: 28px;
+      display: flex; gap: 20px; align-items: flex-start; transition: border-color 0.25s, box-shadow 0.25s;
+    }
+    .cert-card:hover { border-color: var(--accent2); box-shadow: 0 6px 24px rgba(124,58,237,0.08); }
+    .cert-icon {
+      width: 42px; height: 42px;
+      background: rgba(124,58,237,0.08); border: 1.5px solid rgba(124,58,237,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; flex-shrink: 0;
+    }
+    .cert-name { font-family: var(--sans); font-weight: 700; font-size: 0.9rem; margin-bottom: 4px; }
+    .cert-org { font-size: 0.72rem; color: var(--accent2); margin-bottom: 6px; }
+    .cert-period { font-size: 0.68rem; color: var(--muted); letter-spacing: 0.08em; margin-bottom: 12px; }
+    .cert-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 5px 12px; font-size: 0.68rem; letter-spacing: 0.08em;
+      text-decoration: none; border: 1px solid rgba(124,58,237,0.3);
+      color: var(--accent2); transition: all 0.2s; background: rgba(124,58,237,0.04);
+    }
+    .cert-link:hover { background: rgba(124,58,237,0.1); border-color: var(--accent2); }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--surface); border-top: 1.5px solid var(--border); }
+    .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .contact-links { display: flex; flex-direction: column; gap: 12px; margin-top: 32px; }
+    .contact-link {
+      display: flex; align-items: center; gap: 16px;
+      text-decoration: none; padding: 14px 16px;
+      border: 1.5px solid var(--border); color: var(--muted); font-size: 0.82rem;
+      transition: all 0.25s; background: var(--card);
+    }
+    .contact-link:hover { border-color: var(--accent); color: var(--accent); transform: translateX(6px); }
+    .contact-link-icon {
+      width: 32px; height: 32px; background: var(--border);
+      display: flex; align-items: center; justify-content: center; font-size: 0.9rem; flex-shrink: 0;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 28px 48px; border-top: 1.5px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.68rem; color: var(--muted); letter-spacing: 0.08em;
+      position: relative; z-index: 1; background: var(--bg);
+    }
+
+    /* ── REVEAL ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.6s, transform 0.6s;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      .nav-links { display: none; }
+      #hero { padding: 100px 24px 60px; }
+      section { padding: 72px 24px; }
+      #stats { padding: 40px 24px; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      #about { grid-template-columns: 1fr; gap: 40px; }
+      .contact-inner { grid-template-columns: 1fr; gap: 40px; }
+      footer { flex-direction: column; gap: 8px; text-align: center; }
+      .hero-deco { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════
+       NAV
+  ═══════════════════════════════════════ -->
+  <nav>
+    <a href="#hero" class="nav-logo">MRL.</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#certifications">Certs</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ═══════════════════════════════════════
+       HERO
+  ═══════════════════════════════════════ -->
+  <section id="hero">
+    <div class="hero-deco">
+      <div class="hero-deco-text">
+        Data Scientist<br>· AI Engineer ·<br>Published Researcher<br>· QA Engineer ·
+      </div>
+    </div>
+    <p class="hero-tag">// Fresh Graduate · East Jakarta, Indonesia</p>
+    <h1 class="hero-name">
+      Muhammad<br>
+      <span class="outline">Ruhunul</span><br>
+      Luthfi
+    </h1>
+    <p class="hero-desc">
+      BNSP-Certified Data Scientist &amp; Deep Learning Engineer.<br>
+      Building high-accuracy models with <strong>LSTM</strong> &amp; <strong>ResNet50V2</strong>,<br>
+      deploying them into real-world applications.
+    </p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-primary">View Projects</a>
+      <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       STATS
+  ═══════════════════════════════════════ -->
+  <div id="stats">
+    <div class="stats-grid">
+      <div class="stat-item reveal">
+        <div class="stat-num"><span id="c3">0</span></div>
+        <div class="stat-label">GPA / 4.00</div>
+      </div>
+      <div class="stat-item reveal">
+        <div class="stat-num"><span id="c4">0</span></div>
+        <div class="stat-label">Published Research Paper</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       ABOUT
+  ═══════════════════════════════════════ -->
+  <section>
+    <div id="about">
+      <div class="about-text reveal">
+        <p class="section-label">// 01 — About</p>
+        <h2 class="section-title">Building<br>Intelligent<br>Systems</h2>
+        <p>
+          Saya adalah <strong>lulusan Ilmu Komputer dari Universitas Gunadarma</strong> (GPA 3.83/4.00)
+          asal East Jakarta. Passion saya ada di persimpangan Deep Learning, data-driven insights,
+          dan software engineering nyata.
+        </p>
+        <p>
+          Dari memprediksi harga saham dengan LSTM hingga mengklasifikasi sel darah putih
+          dengan ResNet50V2 di akurasi 98.72% — saya fokus membangun model yang memecahkan
+          masalah nyata, lalu <strong>men-deploy-nya ke aplikasi yang berjalan</strong>.
+        </p>
+        <p>
+          Juga berpengalaman sebagai <strong>Lab Assistant</strong> membimbing mahasiswa di Python,
+          Data Science, dan NVIDIA DGX, serta sebagai <strong>Metaverse Developer Intern</strong>
+          membangun aplikasi Unity dengan C# dan Rust.
+        </p>
+        <span class="cert-badge">✦ BNSP Certified Associate Data Scientist · 2025–2028</span>
+      </div>
+      <div class="reveal" style="padding-top: 110px;">
+        <div style="background: var(--card); border: 1.5px solid var(--border); padding: 32px;">
+          <div style="font-size: 0.68rem; letter-spacing: 0.2em; color: var(--accent); margin-bottom: 20px;">// EDUCATION</div>
+          <div style="font-family: var(--sans); font-weight: 800; font-size: 1.35rem; margin-bottom: 6px;">Gunadarma University</div>
+          <div style="font-size: 0.78rem; color: var(--muted); margin-bottom: 24px;">Bachelor of Computer Science · Sep 2021 – Sep 2025</div>
+          <div style="display: flex; gap: 12px; margin-bottom: 20px;">
+            <div style="background: rgba(26,107,90,0.08); border: 1.5px solid rgba(26,107,90,0.2); padding: 12px 16px; text-align: center; flex: 1;">
+              <div style="font-family: var(--sans); font-size: 1.8rem; font-weight: 800; color: var(--accent);">3.83</div>
+              <div style="font-size: 0.65rem; color: var(--muted); letter-spacing: 0.1em;">GPA</div>
+            </div>
+            <div style="background: rgba(124,58,237,0.07); border: 1.5px solid rgba(124,58,237,0.2); padding: 12px 16px; text-align: center; flex: 1;">
+              <div style="font-family: var(--sans); font-size: 1.6rem; font-weight: 800; color: var(--accent2);">SINTA 3</div>
+              <div style="font-size: 0.65rem; color: var(--muted); letter-spacing: 0.1em;">Publication Rank</div>
+            </div>
+          </div>
+          <div style="font-size: 0.78rem; color: var(--muted); line-height: 1.85; border-top: 1px solid var(--border); padding-top: 18px;">
+            Published: <em style="color: var(--text);">"Stock Price Prediction of PT Astra International Tbk Using LSTM"</em>
+            — Jurnal Ilmiah Ekonomi Bisnis, 2025.
+          </div>
+          <div style="margin-top: 14px;">
+            <!-- GANTI: link ke halaman jurnal / PDF skripsi / repository skripsi -->
+            <a href="https://doi.org/10.35760/eb.2025.v30i1.11870" target="_blank" class="project-link doi" style="font-size: 0.7rem;">
+              📄 DOI: 10.35760/eb.2025.v30i1.11870 ↗
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       SKILLS
+  ═══════════════════════════════════════ -->
+  <section id="skills" style="background: var(--surface); border-top: 1.5px solid var(--border); border-bottom: 1.5px solid var(--border);">
+    <p class="section-label reveal">// 02 — Skills</p>
+    <h2 class="section-title reveal">Technical<br>Arsenal</h2>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <div class="skill-card-title">⚙ Programming</div>
+        <div class="skill-tags">
+          <span class="tag">Python</span><span class="tag">SQL</span>
+          <span class="tag">C#</span><span class="tag">JavaScript</span>
+          <span class="tag">HTML / CSS</span><span class="tag">PHP</span><span class="tag">Rust (Basic)</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-card-title">🧠 AI & Deep Learning</div>
+        <div class="skill-tags">
+          <span class="tag">TensorFlow</span><span class="tag">Keras</span>
+          <span class="tag">CNN</span><span class="tag">LSTM</span>
+          <span class="tag">ResNet50V2</span><span class="tag">Scikit-learn</span>
+          <span class="tag">Transfer Learning</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-card-title">📊 Data Science</div>
+        <div class="skill-tags">
+          <span class="tag">Pandas</span><span class="tag">NumPy</span>
+          <span class="tag">Matplotlib</span><span class="tag">Seaborn</span>
+          <span class="tag">Streamlit</span><span class="tag">NVIDIA DGX</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-card-title">🗄 Databases</div>
+        <div class="skill-tags"><span class="tag">SQL Server</span><span class="tag">MySQL</span></div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-card-title">🔬 QA & Testing</div>
+        <div class="skill-tags">
+          <span class="tag">Postman</span><span class="tag">Cypress</span>
+          <span class="tag">Test Planning</span><span class="tag">Bug Reporting</span>
+          <span class="tag">API Testing</span><span class="tag">STLC</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-card-title">🛠 Tools & Others</div>
+        <div class="skill-tags">
+          <span class="tag">Git / GitHub</span><span class="tag">Unity</span>
+          <span class="tag">Figma</span><span class="tag">Tawk.to</span><span class="tag">MS Office</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       EXPERIENCE / TIMELINE
+  ═══════════════════════════════════════ -->
+  <section id="experience">
+    <p class="section-label reveal">// 03 — Experience</p>
+    <h2 class="section-title reveal">Work<br>History</h2>
+    <div class="timeline">
+
+      <!-- QA Bootcamp -->
+      <div class="timeline-item">
+        <div class="timeline-dot" style="background: var(--accent3); box-shadow: 0 0 0 3px var(--bg), 0 0 0 5px var(--accent3);"></div>
+        <div class="timeline-period">APR 2026 — MAY 2026</div>
+        <div class="timeline-role">Quality Assurance Engineer (Bootcamp)</div>
+        <div class="timeline-org">Sanbercode — Batch 76</div>
+        <ul class="timeline-list">
+          <li>Mastered the full STLC — Test Plans, Test Cases, dan dokumentasi defect yang komprehensif.</li>
+          <li>Melakukan validasi API manual &amp; otomatis menggunakan Postman.</li>
+          <li>Membangun end-to-end automation tests dengan framework Cypress.</li>
+          <li>Mengidentifikasi dan melacak bug UI/UX dan fungsional melalui Bug Reports detail.</li>
+        </ul>
+        <div style="margin-top: 14px; display: flex; flex-wrap: wrap; gap: 8px;">
+          <!-- GANTI: ganti href dengan link sertifikat Sanbercode (Google Drive / LinkedIn / Sanbercode website) -->
+          <a href="https://your-sanbercode-certificate-link-here.com" target="_blank" class="timeline-proof">
+            🏅 Sertifikat QA Bootcamp ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- Intern Diktiristek -->
+      <div class="timeline-item">
+        <div class="timeline-dot" style="background: var(--accent2); box-shadow: 0 0 0 3px var(--bg), 0 0 0 5px var(--accent2);"></div>
+        <div class="timeline-period">FEB 2024 — JUL 2024</div>
+        <div class="timeline-role">Metaverse Developer (Blockchain) Intern</div>
+        <div class="timeline-org">Direktorat Jenderal Pendidikan Tinggi, Riset, dan Teknologi</div>
+        <ul class="timeline-list">
+          <li>Developed responsive character controller di Unity (C#) untuk <em>Metaversitas</em>, optimizing avatar interaction.</li>
+          <li>Implemented real-time chat system dengan C# dan Rust, meningkatkan kecepatan message delivery secara signifikan.</li>
+        </ul>
+        <div style="margin-top: 14px; display: flex; flex-wrap: wrap; gap: 8px;">
+          <!-- GANTI: ganti href dengan link surat keterangan magang / sertifikat intern dari Diktiristek -->
+          <a href="https://your-intern-certificate-diktiristek-link-here.com" target="_blank" class="timeline-proof">
+            📋 Surat Keterangan Magang ↗
+          </a>
+          <!-- GANTI: ganti href dengan link repo GitHub project Metaversitas (jika ada) -->
+          <a href="https://github.com/luth0910/metaversitas-project-link-here" target="_blank" class="timeline-proof">
+            ⌥ GitHub Repo ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- Lab Assistant 2024 -->
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-period">SEP 2024 — NOV 2024</div>
+        <div class="timeline-role">Lab Assistant — Mata Kuliah Praktikum Unggulan</div>
+        <div class="timeline-org">Universitas Gunadarma</div>
+        <ul class="timeline-list">
+          <li>Memimpin tim lab assistant untuk mengelola sesi praktikum di 5+ mata kuliah termasuk Big Data dan AI.</li>
+          <li>Membimbing mahasiswa dalam Python &amp; Data Science (NumPy, Pandas, Scikit-learn) dan operasional DGX system.</li>
+          <li>Memberikan real-time technical troubleshooting untuk menjaga uptime lab.</li>
+        </ul>
+        <div style="margin-top: 14px; display: flex; flex-wrap: wrap; gap: 8px;">
+          <!-- GANTI: ganti href dengan link sertifikat / surat keterangan asisten lab Gunadarma 2024 -->
+          <a href="https://your-lab-assistant-2024-certificate-link-here.com" target="_blank" class="timeline-proof">
+            📋 Surat Keterangan Asisten Lab 2024 ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- Lab Assistant 2023 -->
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-period">SEP 2023 — JAN 2024</div>
+        <div class="timeline-role">Lab Assistant — Mata Kuliah Praktikum Unggulan</div>
+        <div class="timeline-org">Universitas Gunadarma</div>
+        <ul class="timeline-list">
+          <li>Menyelesaikan pertanyaan mahasiswa untuk mata kuliah AI, Big Data, dan Robotics via Tawk.to.</li>
+          <li>Membimbing mahasiswa dalam menggunakan NVIDIA DGX system untuk GPU-accelerated computing.</li>
+        </ul>
+        <div style="margin-top: 14px; display: flex; flex-wrap: wrap; gap: 8px;">
+          <!-- GANTI: ganti href dengan link sertifikat / surat keterangan asisten lab Gunadarma 2023 -->
+          <a href="https://your-lab-assistant-2023-certificate-link-here.com" target="_blank" class="timeline-proof">
+            📋 Surat Keterangan Asisten Lab 2023 ↗
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       PROJECTS
+  ═══════════════════════════════════════ -->
+  <section id="projects" style="background: var(--surface); border-top: 1.5px solid var(--border);">
+    <p class="section-label reveal">// 04 — Projects</p>
+    <h2 class="section-title reveal">Featured<br>Work</h2>
+    <div class="projects-grid">
+
+      <!-- Project 1: WBC -->
+      <div class="project-card reveal">
+        <div class="project-num">PROJECT 001 · MAR–AUG 2025</div>
+        <div class="project-title">White Blood Cell Classification using ResNet50V2</div>
+        <div class="project-desc">
+          CNN-based WBC classification system menggunakan Transfer Learning dengan ResNet50V2,
+          di-deploy sebagai Streamlit web app untuk real-time automated image classification.
+          Mengelola full ML lifecycle dari preprocessing hingga deployment.
+        </div>
+        <div class="skill-tags">
+          <span class="tag">ResNet50V2</span><span class="tag">TensorFlow</span>
+          <span class="tag">Streamlit</span><span class="tag">Transfer Learning</span>
+        </div>
+        <div class="project-metric">✦ 98.72% accuracy · 1,018 test images · 5 cell types</div>
+        <div class="project-links">
+          <!-- GANTI: ganti href dengan link repo GitHub project WBC (skripsi) -->
+          <a href="https://github.com/luth0910/wbc-classification-resnet50v2-link-here" target="_blank" class="project-link">
+            ⌥ GitHub Repo ↗
+          </a>
+          <!-- GANTI: ganti href dengan link demo Streamlit app (jika sudah deploy) -->
+          <a href="https://your-wbc-streamlit-demo-link-here.com" target="_blank" class="project-link">
+            ◈ Live Demo ↗
+          </a>
+          <!-- GANTI: ganti href dengan link PDF skripsi / repository skripsi Gunadarma -->
+          <a href="https://your-skripsi-pdf-or-repository-link-here.com" target="_blank" class="project-link doi">
+            📄 Laporan Skripsi ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- Project 2: LSTM Stock -->
+      <div class="project-card reveal">
+        <div class="project-num">PROJECT 002 · MAR 2024–APR 2025</div>
+        <div class="project-title">Stock Price Prediction — PT Astra International Tbk (ASII.JK)</div>
+        <div class="project-desc">
+          LSTM deep learning model untuk financial time-series forecasting pada data saham ASII.JK.
+          Research dipublikasikan di Jurnal Ilmiah Ekonomi Bisnis peringkat SINTA 3 pada April 2025.
+        </div>
+        <div class="skill-tags">
+          <span class="tag">LSTM</span><span class="tag">Keras</span>
+          <span class="tag">Time-Series</span><span class="tag">Python</span>
+        </div>
+        <div class="project-metric">✦ 98.55% accuracy · 1.45% MAPE</div>
+        <div class="project-links">
+          <!-- GANTI: ganti href dengan link repo GitHub project LSTM stock -->
+          <a href="https://github.com/luth0910/lstm-stock-prediction-astra-link-here" target="_blank" class="project-link">
+            ⌥ GitHub Repo ↗
+          </a>
+          <!-- Link DOI jurnal (sudah real, tidak perlu diganti) -->
+          <a href="https://doi.org/10.35760/eb.2025.v30i1.11870" target="_blank" class="project-link doi">
+            📄 DOI: Jurnal ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- Project 3: Metaversitas -->
+      <div class="project-card reveal">
+        <div class="project-num">PROJECT 003 · FEB–JUL 2024</div>
+        <div class="project-title">Metaversitas — Unity VR Campus Platform</div>
+        <div class="project-desc">
+          Berkontribusi pada platform edukasi Metaverse selama internship di Kemendikbud.
+          Membangun responsive character controller dan real-time chat system
+          mengintegrasikan C# dan Rust.
+        </div>
+        <div class="skill-tags">
+          <span class="tag">Unity</span><span class="tag">C#</span>
+          <span class="tag">Rust</span><span class="tag">Real-time Chat</span>
+        </div>
+        <div class="project-metric">✦ Kemendikbud — Ditjen Diktiristek</div>
+        <div class="project-links">
+          <!-- GANTI: ganti href dengan link repo GitHub project Metaversitas (jika ada / public) -->
+          <a href="https://github.com/luth0910/metaversitas-project-link-here" target="_blank" class="project-link">
+            ⌥ GitHub Repo ↗
+          </a>
+          <!-- GANTI: ganti href dengan link laporan magang / dokumentasi project -->
+          <a href="https://your-metaversitas-report-or-documentation-link-here.com" target="_blank" class="project-link doi">
+            📋 Laporan Magang ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- Project 4: Test Plan -->
+      <div class="project-card reveal">
+        <div class="project-num">PROJECT 004 · QA — SANBERCODE 2026</div>
+        <div class="project-title">Test Plan Document</div>
+        <div class="project-desc">
+          Dokumen perencanaan pengujian menyeluruh yang mencakup scope, strategi, jadwal,
+          resource, dan kriteria pass/fail untuk memastikan kualitas software secara sistematis.
+        </div>
+        <div class="skill-tags">
+          <span class="tag">STLC</span><span class="tag">Test Strategy</span>
+          <span class="tag">Risk Analysis</span><span class="tag">QA</span>
+        </div>
+        <div class="project-links">
+          <!-- GANTI: ganti href dengan link dokumen Test Plan (Google Drive / Notion / GitHub) -->
+          <a href="https://your-test-plan-document-link-here.com" target="_blank" class="project-link doi">
+            📄 Lihat Dokumen ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- Project 5: Test Case -->
+      <div class="project-card reveal">
+        <div class="project-num">PROJECT 005 · QA — SANBERCODE 2026</div>
+        <div class="project-title">Test Case Document</div>
+        <div class="project-desc">
+          Kumpulan test case terstruktur mencakup functional testing, boundary testing, dan
+          edge case untuk memverifikasi setiap fitur berjalan sesuai requirement.
+        </div>
+        <div class="skill-tags">
+          <span class="tag">Test Cases</span><span class="tag">Functional Testing</span>
+          <span class="tag">Boundary Testing</span><span class="tag">QA</span>
+        </div>
+        <div class="project-links">
+          <!-- GANTI: ganti href dengan link dokumen Test Case (Google Drive / Notion / GitHub) -->
+          <a href="https://your-test-case-document-link-here.com" target="_blank" class="project-link doi">
+            📄 Lihat Dokumen ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- Project 6: Bug Report -->
+      <div class="project-card reveal">
+        <div class="project-num">PROJECT 006 · QA — SANBERCODE 2026</div>
+        <div class="project-title">Bug Report Document</div>
+        <div class="project-desc">
+          Laporan bug komprehensif mencakup identifikasi, dokumentasi, dan tracking
+          defect UI/UX maupun fungsional, dilengkapi steps to reproduce dan severity level.
+        </div>
+        <div class="skill-tags">
+          <span class="tag">Bug Tracking</span><span class="tag">Defect Management</span>
+          <span class="tag">UI/UX Testing</span><span class="tag">Postman</span>
+        </div>
+        <div class="project-links">
+          <!-- GANTI: ganti href dengan link dokumen Bug Report (Google Drive / Notion / GitHub) -->
+          <a href="https://your-bug-report-document-link-here.com" target="_blank" class="project-link doi">
+            📄 Lihat Dokumen ↗
+          </a>
+        </div>
+      </div>
+
+      <!--
+        ══════════════════════════════════════
+        TAMBAH PROJECT BARU DI SINI
+        Copy template di bawah ini, paste setelah card ini,
+        lalu isi datanya:
+
+        <div class="project-card reveal">
+          <div class="project-num">PROJECT 00X · BULAN TAHUN</div>
+          <div class="project-title">Nama Project</div>
+          <div class="project-desc">
+            Deskripsi singkat project kamu di sini.
+          </div>
+          <div class="skill-tags">
+            <span class="tag">Tech 1</span>
+            <span class="tag">Tech 2</span>
+          </div>
+          <div class="project-metric">✦ Highlight metrik / pencapaian</div>
+          <div class="project-links">
+            <a href="https://link-github-kamu.com" target="_blank" class="project-link">⌥ GitHub Repo ↗</a>
+            <a href="https://link-dokumen-kamu.com" target="_blank" class="project-link doi">📄 Dokumen ↗</a>
+          </div>
+        </div>
+        ══════════════════════════════════════
+      -->
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       CERTIFICATIONS
+  ═══════════════════════════════════════ -->
+  <section id="certifications">
+    <p class="section-label reveal">// 05 — Certifications</p>
+    <h2 class="section-title reveal">Credentials</h2>
+    <div class="cert-grid">
+
+      <!-- BNSP -->
+      <div class="cert-card reveal">
+        <div class="cert-icon">🏅</div>
+        <div>
+          <div class="cert-name">Associate Data Scientist</div>
+          <div class="cert-org">BNSP — Badan Nasional Sertifikasi Profesi</div>
+          <div class="cert-period">SEP 2025 — SEP 2028 · National Standard (SKKNI)</div>
+          <!-- GANTI: ganti href dengan link sertifikat BNSP (Google Drive / situs BNSP / LinkedIn) -->
+          <a href="https://your-bnsp-certificate-link-here.com" target="_blank" class="cert-link">
+            🔗 Lihat Sertifikat ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- Sanbercode QA -->
+      <div class="cert-card reveal">
+        <div class="cert-icon">🧪</div>
+        <div>
+          <div class="cert-name">Quality Assurance Bootcamp</div>
+          <div class="cert-org">Sanbercode — Batch 76</div>
+          <div class="cert-period">APR 2026 — MAY 2026 · STLC, Postman, Cypress</div>
+          <!-- GANTI: ganti href dengan link sertifikat QA Sanbercode -->
+          <a href="https://your-sanbercode-certificate-link-here.com" target="_blank" class="cert-link">
+            🔗 Lihat Sertifikat ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- Published Researcher -->
+      <div class="cert-card reveal">
+        <div class="cert-icon">📄</div>
+        <div>
+          <div class="cert-name">Published Researcher</div>
+          <div class="cert-org">Jurnal Ilmiah Ekonomi Bisnis — SINTA 3</div>
+          <div class="cert-period">APRIL 2025 · DOI: 10.35760/eb.2025.v30i1.11870</div>
+          <!-- Link jurnal DOI sudah real, tidak perlu diganti -->
+          <a href="https://doi.org/10.35760/eb.2025.v30i1.11870" target="_blank" class="cert-link">
+            🔗 Lihat Publikasi ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- Intern Diktiristek -->
+      <div class="cert-card reveal">
+        <div class="cert-icon">🏛</div>
+        <div>
+          <div class="cert-name">Metaverse Developer Intern</div>
+          <div class="cert-org">Ditjen Diktiristek — Kemendikbud</div>
+          <div class="cert-period">FEB 2024 — JUL 2024 · Unity, C#, Rust</div>
+          <!-- GANTI: ganti href dengan link surat keterangan magang dari Diktiristek -->
+          <a href="https://your-intern-certificate-diktiristek-link-here.com" target="_blank" class="cert-link">
+            🔗 Surat Keterangan ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- Lab Assistant 2024 -->
+      <div class="cert-card reveal">
+        <div class="cert-icon">🔬</div>
+        <div>
+          <div class="cert-name">Lab Assistant 2024</div>
+          <div class="cert-org">Universitas Gunadarma — Praktikum Unggulan</div>
+          <div class="cert-period">SEP 2024 — NOV 2024 · AI, Big Data, DGX</div>
+          <!-- GANTI: ganti href dengan link surat keterangan asisten lab 2024 -->
+          <a href="https://your-lab-assistant-2024-certificate-link-here.com" target="_blank" class="cert-link">
+            🔗 Surat Keterangan ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- Lab Assistant 2023 -->
+      <div class="cert-card reveal">
+        <div class="cert-icon">🔬</div>
+        <div>
+          <div class="cert-name">Lab Assistant 2023</div>
+          <div class="cert-org">Universitas Gunadarma — Praktikum Unggulan</div>
+          <div class="cert-period">SEP 2023 — JAN 2024 · AI, Big Data, Robotics</div>
+          <!-- GANTI: ganti href dengan link surat keterangan asisten lab 2023 -->
+          <a href="https://your-lab-assistant-2023-certificate-link-here.com" target="_blank" class="cert-link">
+            🔗 Surat Keterangan ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- Copyright / HKI -->
+      <div class="cert-card reveal" style="border-color: rgba(194,65,12,0.3);">
+        <div class="cert-icon" style="background: rgba(194,65,12,0.08); border-color: rgba(194,65,12,0.25); font-size: 1.2rem;">©</div>
+        <div>
+          <div class="cert-name">Hak Cipta — Copyright Certificate</div>
+          <div class="cert-org" style="color: var(--accent3);">Kementerian Hukum dan HAM, Republik Indonesia</div>
+          <div class="cert-period">25 JULY 2025 · Perlindungan 50 Tahun</div>
+          <div style="font-size: 0.72rem; color: var(--muted); line-height: 1.7; margin: 8px 0 12px;">
+            <em style="color: var(--text);">"Aplikasi Klasifikasi Sel Darah Putih Menggunakan CNN ResNet50V2"</em><br>
+            Type: Computer Program · UU No. 28 Tahun 2014
+          </div>
+          <!-- GANTI: ganti href dengan link sertifikat HKI / surat pencatatan ciptaan dari Kemenkumham -->
+          <a href="https://your-hki-copyright-certificate-link-here.com" target="_blank" class="cert-link" style="border-color: rgba(194,65,12,0.3); color: var(--accent3);">
+            🔗 Lihat Sertifikat HKI ↗
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       CONTACT
+  ═══════════════════════════════════════ -->
+  <section id="contact">
+    <div class="contact-inner">
+      <div class="reveal">
+        <p class="section-label">// 06 — Contact</p>
+        <h2 class="section-title">Let's<br>Connect</h2>
+        <p style="font-size: 0.85rem; color: var(--muted); line-height: 1.9; max-width: 380px;">
+          Open to opportunities in Data Science, Machine Learning Engineering, QA, dan research collaboration.
+          Feel free to reach out!
+        </p>
+      </div>
+      <div class="reveal">
+        <div class="contact-links">
+          <a href="mailto:muhammad.r.luthfi@gmail.com" class="contact-link">
+            <div class="contact-link-icon">✉</div>
+            <div>
+              <div style="font-size: 0.65rem; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 2px;">EMAIL</div>
+              <div>muhammad.r.luthfi@gmail.com</div>
+            </div>
+          </a>
+          <a href="tel:081286038123" class="contact-link">
+            <div class="contact-link-icon">☏</div>
+            <div>
+              <div style="font-size: 0.65rem; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 2px;">PHONE</div>
+              <div>081286038123</div>
+            </div>
+          </a>
+          <a href="https://github.com/luth0910" target="_blank" class="contact-link">
+            <div class="contact-link-icon">⌥</div>
+            <div>
+              <div style="font-size: 0.65rem; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 2px;">GITHUB</div>
+              <div>github.com/luth0910</div>
+            </div>
+          </a>
+          <a href="https://linkedin.com/in/muhammad-ruhunul-luthfi-739aa63a1" target="_blank" class="contact-link">
+            <div class="contact-link-icon">in</div>
+            <div>
+              <div style="font-size: 0.65rem; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 2px;">LINKEDIN</div>
+              <div>Muhammad Ruhunul Luthfi</div>
+            </div>
+          </a>
+          <a href="https://luthfi-portfolio.vercel.app" target="_blank" class="contact-link">
+            <div class="contact-link-icon">◈</div>
+            <div>
+              <div style="font-size: 0.65rem; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 2px;">PORTFOLIO</div>
+              <div>luthfi-portfolio.vercel.app</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════ -->
+  <footer>
+    <span>© 2025 Muhammad Ruhunul Luthfi</span>
+    <span>East Jakarta, Indonesia</span>
+    <span style="color: var(--accent);">Built with ✦ precision</span>
+  </footer>
+
+  <!-- ═══════════════════════════════════════
+       SCRIPTS
+  ═══════════════════════════════════════ -->
+  <script>
+    // ── COUNTER ANIMATION ──
+    function animateCount(el, target, decimals = 0, duration = 1500) {
+      let start = 0;
+      const step = (ts) => {
+        if (!start) start = ts;
+        const p = Math.min((ts - start) / duration, 1);
+        el.textContent = decimals ? (p * target).toFixed(2) : Math.floor(p * target);
+        if (p < 1) requestAnimationFrame(step);
+        else el.textContent = decimals ? target.toFixed(2) : target;
+      };
+      requestAnimationFrame(step);
+    }
+
+    // ── INTERSECTION OBSERVER (reveal + counter) ──
+    const revealEls = document.querySelectorAll('.reveal, .timeline-item');
+    let countersStarted = false;
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    revealEls.forEach(el => io.observe(el));
+
+    const statsObs = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting && !countersStarted) {
+        countersStarted = true;
+        animateCount(document.getElementById('c3'), 3.83, 2);
+        animateCount(document.getElementById('c4'), 1, 0);
+      }
+    }, { threshold: 0.3 });
+    statsObs.observe(document.getElementById('stats'));
+
+    // ── ACTIVE NAV ──
+    const sections = document.querySelectorAll('section[id], div[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) current = s.id; });
+      navLinks.forEach(a => {
+        a.style.color = a.getAttribute('href') === '#' + current ? 'var(--accent)' : 'var(--muted)';
+      });
+    });
+
+    // ── STAGGER DELAYS ──
+    document.querySelectorAll('.skills-grid .skill-card').forEach((c, i) => c.style.transitionDelay = `${i * 0.08}s`);
+    document.querySelectorAll('.timeline-item').forEach((c, i) => c.style.transitionDelay = `${i * 0.1}s`);
+    document.querySelectorAll('.project-card').forEach((c, i) => c.style.transitionDelay = `${i * 0.1}s`);
+    document.querySelectorAll('.cert-card').forEach((c, i) => c.style.transitionDelay = `${i * 0.07}s`);
+  </script>
+
+</body>
+</html>
