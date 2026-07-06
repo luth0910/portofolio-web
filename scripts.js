@@ -122,3 +122,14 @@ document.addEventListener("click", (e) => {
     closeMobileNav();
   }
 });
+function toggleCompetency(btn) {
+  const list = document.getElementById("competency-list");
+  const extraItems = list.querySelectorAll(".extra-item");
+  const isCurrentlyHidden = extraItems[0].classList.contains("is-hidden");
+
+  extraItems.forEach((item) => {
+    item.classList.toggle("is-hidden");
+  });
+
+  btn.textContent = isCurrentlyHidden ? "Show less ▴" : "+6 more ▾";
+}

@@ -1014,6 +1014,7 @@ section {
   background: var(--card);
   padding: 32px;
   display: flex;
+  flex-direction: column;
   gap: 20px;
   align-items: flex-start;
   transition: background 0.25s;
@@ -1289,7 +1290,6 @@ footer {
 }
 
 /* ── THEME TRANSITION ── */
-/* Taruh di paling bawah styles.css */
 *,
 *::before,
 *::after {
@@ -1300,7 +1300,6 @@ footer {
     box-shadow 0.3s ease;
 }
 
-/* Tapi exclude animasi yang tidak boleh kena override */
 .hero-eyebrow,
 .hero-name,
 .hero-desc,
@@ -1318,7 +1317,6 @@ footer {
   transition: unset;
 }
 
-/* Kembalikan transisi yang memang perlu */
 .btn {
   transition: all 0.25s;
 }
@@ -1342,6 +1340,90 @@ footer {
 .cert-card {
   transition: background 0.25s;
 }
+
+.cert-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 8px 0 14px;
+}
+.cert-tag {
+  font-size: 0.6rem;
+  letter-spacing: 0.03em;
+  padding: 4px 9px;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.03);
+}
+body.light .cert-tag {
+  border-color: rgba(0, 0, 0, 0.15);
+  color: #3a3a4a;
+  background: rgba(0, 0, 0, 0.04);
+}
+.cert-card {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  height: 100%;
+}
+
+.cert-card > div:last-child {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.cert-link {
+  margin-top: auto;
+}
+
+/* ── CERT COMPETENCY LIST  ── */
+.cert-competency-list {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.cert-competency-list li {
+  font-size: 0.7rem;
+  color: var(--muted);
+  line-height: 1.5;
+  padding-left: 14px;
+  position: relative;
+}
+.cert-competency-list li::before {
+  content: "▸";
+  position: absolute;
+  left: 0;
+  color: var(--accent2);
+}
+.cert-competency-list li em {
+  color: var(--text);
+  font-style: italic;
+}
+.cert-competency-list li.hidden-item {
+  display: none;
+}
+.cert-competency-toggle {
+  font-size: 0.62rem;
+  letter-spacing: 0.05em;
+  color: var(--accent2);
+  background: transparent;
+  border: none;
+  padding: 0 0 0 14px;
+  cursor: pointer;
+  font-family: var(--mono);
+  text-align: left;
+}
+.cert-competency-toggle:hover {
+  text-decoration: underline;
+}
+
+.cert-competency-list li.is-hidden {
+  display: none;
+}
+
 /* ── MOBILE NAV HAMBURGER ── */
 /* ── NAV ACTIONS (theme toggle + hamburger) ── */
 .nav-actions {
