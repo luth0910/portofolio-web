@@ -999,6 +999,26 @@ section {
   background: rgba(168, 85, 247, 0.06);
 }
 
+.project-link.demo {
+  border-color: rgba(0, 229, 160, 0.35);
+  color: var(--accent);
+  background: rgba(0, 229, 160, 0.06);
+}
+.project-link.demo:hover {
+  border-color: var(--accent);
+  background: rgba(0, 229, 160, 0.14);
+  box-shadow: 0 0 12px rgba(0, 229, 160, 0.15);
+}
+body.light .project-link.demo {
+  border-color: rgba(0, 122, 82, 0.3);
+  color: #007a52;
+  background: rgba(0, 122, 82, 0.06);
+}
+body.light .project-link.demo:hover {
+  background: rgba(0, 122, 82, 0.12);
+  border-color: #007a52;
+}
+
 /* ── CERTS ── */
 #certifications {
   background: var(--bg);
